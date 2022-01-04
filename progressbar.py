@@ -15,7 +15,7 @@ class ProgressBar:
         self.kvPairs = kvPairs
 
     def __next__(self):
-        lengthOfBar = 30
+        lengthOfBar = self.kvPairs['length']
         ratio = (len(str(self.listLength)) - len(str(self.currentIndex + 1))) * ' ' + f'{self.currentIndex + 1}/{self.listLength}'
         percentage = f'{int(100 * (self.currentIndex + 1) / self.listLength)}% '
 
@@ -39,7 +39,8 @@ class ProgressBar:
 
 def progressbar(listLength, **kwargs):
     kvPairs = {'color': 'white',
-               'text': ''}
+               'text': '',
+               'length': 30}
     for key, value in kwargs.items():
         kvPairs[key] = value
 
@@ -51,7 +52,6 @@ def progressbar(listLength, **kwargs):
 if __name__ == '__main__':
     from time import sleep
     print('This is my progressbar:')
-    for i in progressbar(5):
+    for i in progressbar(5, color='red', text='Progression: ', length=50):
         sleep(1)
-        pass
     print('Done!')
