@@ -1,3 +1,6 @@
+# Imports
+from time import sleep
+
 # Progress bar for finite loops
 class ProgressBar:
     colors = {'red': '\033[91m',
@@ -31,6 +34,8 @@ class ProgressBar:
         if self.currentIndex == self.listLength - 1:
             print('\033[0m', end='\n')
 
+        sleep(self.kvPairs['sleep'])
+
         self.currentIndex += 1
 
         return self.currentIndex
@@ -40,7 +45,8 @@ class ProgressBar:
 def progressbar(listLength, **kwargs):
     kvPairs = {'color': 'white',
                'text': '',
-               'length': 30}
+               'length': 30,
+               'sleep': 0}
     for key, value in kwargs.items():
         kvPairs[key] = value
 
@@ -50,8 +56,7 @@ def progressbar(listLength, **kwargs):
 
 
 if __name__ == '__main__':
-    from time import sleep
     print('This is my progressbar:')
-    for i in progressbar(5, color='red', text='Progression: ', length=50):
-        sleep(1)
+    for i in progressbar(5, color='red', text='Progression: ', length=40, sleep=1):
+        pass
     print('Done!')
