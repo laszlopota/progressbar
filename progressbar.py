@@ -12,9 +12,8 @@ class ProgressBar:
               'black': '\033[90m'}
 
     def __init__(self, listLength, kvPairs):
-        self.kvPairs = kvPairs
-        self.listLength = listLength
         self.currentIndex = 0
+        self.listLength = listLength
         self.kvPairs = kvPairs
 
     def __next__(self):
