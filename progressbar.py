@@ -56,6 +56,6 @@ def progressbar(listLength, **kwargs):
 
 if __name__ == '__main__':
     print('This is my progressbar:')
-    for i in progressbar(100, color='red', text='Progression: ', length=40, sleep=1):
+    for i in progressbar(5, color='red', text='Progression: ', length=40, sleep=1):
         pass
     print('Done!')
