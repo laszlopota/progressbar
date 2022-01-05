@@ -17,19 +17,19 @@ class ProgressBar:
         self.kvPairs = kvPairs
 
     def __next__(self):
-        lengthOfBar = self.kvPairs['length']
+        barLength = self.kvPairs['length']
         ratio = (len(str(self.listLength)) - len(str(self.currentIndex + 1))) * ' ' + f'{self.currentIndex + 1}/{self.listLength}'
         percentage = f'{int(100 * (self.currentIndex + 1) / self.listLength)}% '
 
         spacesInFront = (5 - len(str(percentage))) * ' '
-        startOfBar = '│'
-        symbolOfProgression = '█'
-        numberOfSymbols = int((self.currentIndex + 1) * lengthOfBar / self.listLength)
-        bar = numberOfSymbols * symbolOfProgression + (lengthOfBar - numberOfSymbols) * ' '
-        endOfBar = '│ '
+        barStart = '│'
+        barSymbol = '█'
+        barFilled = int((self.currentIndex + 1) * barLength / self.listLength)
+        barEmpty = barFilled * barSymbol + (barLength - barFilled) * ' '
+        barEnd = '│ '
 
         print('\r', end=' ')
-        print(self.colors[self.kvPairs['color']] + self.kvPairs['text'] + spacesInFront + percentage + startOfBar + bar + endOfBar + ratio, end='')
+        print(self.colors[self.kvPairs['color']] + self.kvPairs['text'] + spacesInFront + percentage + barStart + barEmpty + barEnd + ratio, end='')
         if self.currentIndex == self.listLength - 1:
             print('\033[0m', end='\n')
 
